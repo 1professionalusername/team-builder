@@ -1,12 +1,19 @@
 import React from 'react';
 
 
-function FormList() {
+function FormList(props) {
 
     return (
-        <h1>Form List</h1>
+        <div>
+            {props.members.map((member, index) => (
+                <div className='list-item' key={index}>
+                    <h2>{member.memberName}</h2>
+                    <p>{member.email}</p>
+                    <p>{member.role}</p>
+                </div>
+            ))
+            }
+        </div>
     )
-
-
 }
-export default FormList
+export default FormList;

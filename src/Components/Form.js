@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import FormList from './FormList'
 
 
 
@@ -12,14 +12,12 @@ function Form(props) {
         role: ''
     })
 
-
+    //we use the spread operator here to merge data b/c whatever we pass to setNewMember will get overwritten and we need stuff from previous state
     const handleChange = event => {
-        //destructuring e.t.v is creating a key and below in membername it grabs the 'name' and then the e.t.v is grabbing whats in the value field/listens to every input field
         setNewMember({
             ...newMember, [event.target.name]: event.target.value
         })
     }
-    //console.log(newMember)
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -35,30 +33,41 @@ function Form(props) {
             role: ''
         });
     }
-
+    //when something is typed in the input field, it will fire handleChange. 
+    //handleChange is gonna run and it will create a new object from the current member object. 
+    //It wil get event.target.name from the DOM element(title) 
+    //and it will set in the state in the new object of title to the value of that input field 
     return (
-
         <div>
+            {/* form tag handles submit */}
             <form onSubmit={handleSubmit}>
+                {/* input tag handles state */}
                 <input
                     onChange={handleChange}
                     type='text'
                     name='memberName'
                     id=''
-                    placeholder='First and last name' />
+                    placeholder='First and last name'
+                    value={newMember.memberName}
+                />
                 <input
                     onChange={handleChange}
                     type='text'
                     name='email'
                     id=''
-                    placeholder='First and last name' />
+                    placeholder='Your Email'
+                    value={newMember.email}
+                />
                 <input
                     onChange={handleChange}
                     type='text'
                     name='role'
                     id=''
-                    placeholder='First and last name' />
+                    placeholder='Your Role'
+                    value={newMember.role} />
+
                 <button type='submit'>Submit</button>
+
             </form>
         </div>
     )
